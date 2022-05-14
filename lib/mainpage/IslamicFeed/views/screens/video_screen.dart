@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:islamicapp/mainpage/IslamicFeed/views/screens/add_video_screen.dart';
 import 'package:islamicapp/mainpage/IslamicFeed/views/screens/profile_screen.dart';
 import '../../constants.dart';
@@ -10,7 +11,7 @@ import 'package:video_player/video_player.dart';
 import 'package:get/get.dart';
 
 class VideoScreen extends StatefulWidget {
-  VideoScreen({Key? key}) : super(key: key);
+  const VideoScreen({Key? key}) : super(key: key);
 
   @override
   State<VideoScreen> createState() => _VideoScreenState();
@@ -20,74 +21,53 @@ class _VideoScreenState extends State<VideoScreen> {
   final VideoController videoController = Get.put(VideoController());
 
   buildProfile(String profilePhoto, String uid, BuildContext context) {
-    return SizedBox(
-      width: 60,
-      height: 60,
-      child: Stack(children: [
-        Positioned(
-          left: 5,
-          child: Container(
-            width: 50,
-            height: 50,
-            padding: const EdgeInsets.all(1),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(25),
-            ),
-            child: InkWell(
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => ProfileScreen(uid: uid),
-              )),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(25),
-                child: Image(
-                  image: NetworkImage(profilePhoto),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
+    return Container(
+      width: 50,
+      height: 50,
+      padding: const EdgeInsets.all(1),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(25),
+      ),
+      child: InkWell(
+        onTap: () => Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => ProfileScreen(uid: uid),
+        )),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(25),
+          child: Image(
+            image: NetworkImage(profilePhoto),
+            fit: BoxFit.cover,
           ),
-        )
-      ]),
+        ),
+      ),
     );
   }
 
   buildMusicAlbum(String profilePhoto, BuildContext context) {
-    return SizedBox(
-      width: 60,
-      height: 60,
-      child: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.all(11),
-            height: 50,
-            width: 50,
-            decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [
-                    Colors.grey,
-                    Colors.white,
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(25)),
-            child: Center(
-              child: IconButton(
-                icon: Icon(Icons.add),
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => AddVideoScreen(),
-                )),
-              ),
-            ),
-            // child: ClipRRect(
-            //   borderRadius: BorderRadius.circular(25),
-            //   child: Image(
-            //     image: NetworkImage(profilePhoto),
-            //     fit: BoxFit.cover,
-            //   ),
-            // ),
-          ),
-        ],
-      ),
+    return Column(
+      children: [
+        InkWell(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) {
+                return const AddVideoScreen();
+              },
+            ));
+          },
+          child: Container(
+              padding: const EdgeInsets.all(11),
+              height: 50,
+              width: 50,
+              decoration: BoxDecoration(
+                  color: const Color(0Xff8F2C2C),
+                  borderRadius: BorderRadius.circular(25)),
+              child: const Icon(
+                Icons.add,
+                color: Colors.white,
+              )),
+        ),
+      ],
     );
   }
 
@@ -114,18 +94,27 @@ class _VideoScreenState extends State<VideoScreen> {
             ),
           ),
         ),
-        title: Expanded(
+        title: Center(
           child: Row(
-            children: const [
-              Text(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text(
                 'Following',
                 style: TextStyle(fontSize: 18, color: Color(0xff9D9D9D)),
               ),
-              VerticalDivider(
+              Container(
                 color: Colors.white,
+                margin: const EdgeInsets.symmetric(horizontal: 8),
+                width: 2,
+                height: 20,
               ),
-              Text('WorldWide',
-                  style: TextStyle(color: Colors.white, fontSize: 18))
+              // Text('WorldWide',
+              //     style: TextStyle(color: Colors.white, fontSize: 18))
+              const Text(
+                'Worldwide',
+                style: TextStyle(fontSize: 18, color: Color(0xffffffff)),
+              ),
             ],
           ),
         ),
@@ -227,10 +216,10 @@ class _VideoScreenState extends State<VideoScreen> {
                 Container(
                   margin: const EdgeInsets.only(top: 30),
                   child: ListTile(
-                      leading: Image.asset(
-                        'assets/home.png',
-                        height: 25,
+                      leading: SvgPicture.asset(
+                        'assets/icon.svg',
                         width: 25,
+                        height: 25,
                       ),
                       title: const Text(
                         "Home",
@@ -344,55 +333,59 @@ class _VideoScreenState extends State<VideoScreen> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Row(
+                                    // mainAxisAlignment: MainAxisAlignment.start,
+                                    // crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       buildProfile(
                                           data.profilePhoto, data.uid, context),
                                       const SizedBox(
-                                        width: 5,
+                                        width: 7,
                                       ),
                                       Text(
                                         data.username,
                                         style: const TextStyle(
-                                          fontSize: 20,
+                                          fontSize: 18,
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
                                     ],
                                   ),
-                                  Text(
-                                    data.caption,
-                                    style: const TextStyle(
-                                      fontSize: 15,
-                                      color: Colors.white,
+                                  Padding(
+                                    padding: const EdgeInsets.only(top:8.0),
+                                    child: Text(
+                                      data.caption,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                   Row(
                                     children: [
                                       const Icon(
                                         Icons.music_note,
-                                        size: 15,
+                                        size: 14,
                                         color: Colors.white,
                                       ),
                                       Text(
                                         data.songName,
                                         style: const TextStyle(
-                                          fontSize: 15,
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
                                     ],
-                                  )
+                                  ),
+                                  const SizedBox(height: 8,),
                                 ],
                               ),
                             ),
                           ),
                           Container(
-                            width: 100,
-                            margin: EdgeInsets.only(top: size.height / 5),
+                            // width: 100,
+                            margin: const EdgeInsets.only(right: 16),
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 // buildProfile(
                                 //     data.profilePhoto, data.uid, context),
@@ -402,16 +395,18 @@ class _VideoScreenState extends State<VideoScreen> {
                                       onTap: () =>
                                           videoController.likeVideo(data.id),
                                       child: Icon(
-                                        Icons.favorite_outline,
+                                        data.likes.contains(
+                                                firebaseAuth.currentUser!.uid)
+                                            ? Icons.favorite
+                                            : Icons.favorite_outline_outlined,
                                         size: 40,
                                         color: data.likes.contains(
                                                 firebaseAuth.currentUser!.uid)
-                                            // authController.user.uid)
                                             ? Colors.red
                                             : Colors.white,
                                       ),
                                     ),
-                                    const SizedBox(height: 7),
+                                    const SizedBox(height: 3),
                                     Text(
                                       data.likes.length.toString(),
                                       style: const TextStyle(
@@ -420,6 +415,9 @@ class _VideoScreenState extends State<VideoScreen> {
                                       ),
                                     )
                                   ],
+                                ),
+                                const SizedBox(
+                                  height: 12,
                                 ),
                                 Column(
                                   children: [
@@ -432,8 +430,12 @@ class _VideoScreenState extends State<VideoScreen> {
                                                 ),
                                               ),
                                             ),
-                                        child: Image.asset('assets/mess.png')),
-                                    const SizedBox(height: 7),
+                                        child: SvgPicture.asset(
+                                          'assets/message.svg',
+                                          height: 24,
+                                          width: 24,
+                                        )),
+                                    const SizedBox(height: 3),
                                     Text(
                                       data.commentCount.toString(),
                                       style: const TextStyle(
@@ -443,12 +445,17 @@ class _VideoScreenState extends State<VideoScreen> {
                                     )
                                   ],
                                 ),
+                                const SizedBox(
+                                  height: 12,
+                                ),
                                 Column(
                                   children: [
-                                    InkWell(
-                                        onTap: () {},
-                                        child: Image.asset('assets/ss.png')),
-                                    const SizedBox(height: 7),
+                                    SvgPicture.asset(
+                                      'assets/share.svg',
+                                      height: 24,
+                                      width: 24,
+                                    ),
+                                    const SizedBox(height: 3),
                                     Text(
                                       data.shareCount.toString(),
                                       style: const TextStyle(
@@ -458,7 +465,13 @@ class _VideoScreenState extends State<VideoScreen> {
                                     )
                                   ],
                                 ),
+                                const SizedBox(
+                                  height: 12,
+                                ),
                                 buildMusicAlbum(data.profilePhoto, context),
+                                const SizedBox(
+                                  height: 8,
+                                ),
                                 // CircleAnimation(
                                 //   child: buildMusicAlbum(
                                 //       data.profilePhoto, context),

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:islamicapp/mainpage/IslamicFeed/views/screens/video_screen.dart';
 import 'package:islamicapp/mainpage/myhomepage.dart';
 import 'package:islamicapp/mainpage/qibla.dart';
@@ -37,7 +38,6 @@ class _MainScreenState extends State<MainScreen> {
                 context, MaterialPageRoute(builder: (builder) => Qibla()));
           },
           child:
-              //  Icon(Icons.add),
               Image.asset(
             'assets/group.png',
             height: 120,
@@ -69,10 +69,13 @@ class _MainScreenState extends State<MainScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Image.asset(
-                          'assets/home.png',
-                          height: 30,
-                          width: 30,
+                        SvgPicture.asset(
+                          'assets/home.svg',
+                          height: 25,
+                          width: 25,
+                          color: currentTab == 0
+                              ? const Color(0xff3f48cc)
+                              : const Color(0xff8d8282),
                         ),
                         Text(
                           'Home',
@@ -80,15 +83,14 @@ class _MainScreenState extends State<MainScreen> {
                             fontFamily: 'Gilroy',
                             fontSize: 10,
                             color: currentTab == 0
-                                ? Color(0xff3f48cc)
-                                : Color(0xff8d8282),
+                                ? const Color(0xff3f48cc)
+                                : const Color(0xff8d8282),
                           ),
                         )
                       ],
                     ),
                   ),
 
-                  //Orders
                   MaterialButton(
                     minWidth: 40,
                     onPressed: () {
@@ -101,10 +103,13 @@ class _MainScreenState extends State<MainScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Image.asset(
-                          'assets/livevideo.png',
+                        SvgPicture.asset(
+                          'assets/islam_feed.svg',
                           height: 30,
                           width: 30,
+                          color: currentTab == 1
+                              ? const Color(0xff3f48cc)
+                              : const Color(0xff8d8282),
                         ),
                         Text(
                           'Islamfeed',
@@ -112,8 +117,8 @@ class _MainScreenState extends State<MainScreen> {
                             fontFamily: 'Gilroy',
                             fontSize: 10,
                             color: currentTab == 1
-                                ? Color(0xff3f48cc)
-                                : Color(0xff8d8282),
+                                ? const Color(0xff3f48cc)
+                                : const Color(0xff8d8282),
                           ),
                         )
                       ],
@@ -128,26 +133,32 @@ class _MainScreenState extends State<MainScreen> {
                     onPressed: () {
                       setState(() {
                         currentScreen =
-                            Community(); // if user taps on this dashboard tab will be active
+                            const Community(); // if user taps on this dashboard tab will be active
                         currentTab = 2;
                       });
                     },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Image.asset(
-                          'assets/com.png',
+                        SvgPicture.asset(
+                          'assets/community_icon.svg',
                           height: 30,
                           width: 30,
+                          color: currentTab == 2
+                              ? const Color(0xff3f48cc)
+                              : const Color(0xff8d8282),
                         ),
-                        Text(
-                          'Community',
-                          style: TextStyle(
-                            fontFamily: 'Gilroy',
-                            fontSize: 10,
-                            color: currentTab == 2
-                                ? Color(0xff3f48cc)
-                                : Color(0xff8d8282),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 2.0),
+                          child: Text(
+                            'Community',
+                            style: TextStyle(
+                              fontFamily: 'Gilroy',
+                              fontSize: 10,
+                              color: currentTab == 2
+                                  ? Color(0xff3f48cc)
+                                  : Color(0xff8d8282),
+                            ),
                           ),
                         )
                       ],
@@ -160,25 +171,32 @@ class _MainScreenState extends State<MainScreen> {
                     onPressed: () {
                       setState(() {
                         currentScreen =
-                            Settings(); // if user taps on this dashboard tab will be active
+                            const Settings(); // if user taps on this dashboard tab will be active
                         currentTab = 3;
                       });
                     },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Image.asset(
-                          'assets/v.png',
-                          height: 30,
-                          width: 30,
+                        SvgPicture.asset(
+                          'assets/profile_icon.svg',
+                          height: 24,
+                          width: 24,
+                          color: currentTab == 3
+                              ? const Color(0xff3f48cc)
+                              : const Color(0xff8d8282),
                         ),
-                        Text(
-                          'Profile',
-                          style: TextStyle(
-                            fontFamily: 'Gilroy',
-                            color: currentTab == 3
-                                ? Color(0xff3f48cc)
-                                : Color(0xff8d8282),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 3.0),
+                          child: Text(
+                            'Profile',
+                            style: TextStyle(
+                              fontFamily: 'Gilroy',
+                              fontSize: 10,
+                              color: currentTab == 3
+                                  ? const Color(0xff3f48cc)
+                                  : const Color(0xff8d8282),
+                            ),
                           ),
                         )
                       ],

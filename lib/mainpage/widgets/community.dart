@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:islamicapp/mainpage/add_community.dart';
 import 'package:islamicapp/mainpage/add_qari_feed.dart';
-import 'package:islamicapp/mainpage/widgets/community_widget.dart';
 import 'package:islamicapp/mainpage/widgets/qari_feed.dart';
 
 class Community extends StatefulWidget {
@@ -15,6 +13,7 @@ class Community extends StatefulWidget {
 class _CommunityState extends State<Community> {
   String? search;
   final TextEditingController _searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,16 +30,30 @@ class _CommunityState extends State<Community> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Text(
+                      'Nearest Mosque',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          fontFamily: 'Gilroy',
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    ),
+                  ),
+                ),
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: TextField(
                     controller: _searchController,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(120),
                       ),
-                      fillColor: Color(0xff000000),
+                      fillColor: const Color(0xcc000000),
                       filled: true,
                       suffixIcon: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -49,16 +62,16 @@ class _CommunityState extends State<Community> {
                           height: 44,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(40),
-                              color: Color(0xff3F48CC)),
-                          child: Icon(
+                              color: const Color(0xff3F48CC)),
+                          child: const Icon(
                             Icons.search,
                             color: Colors.white,
                           ),
                         ),
                       ),
-                      contentPadding: EdgeInsets.only(top: 20, left: 20),
-                      hintText: 'Please Search',
-                      hintStyle: TextStyle(
+                      contentPadding: const EdgeInsets.only(top: 20, left: 20),
+                      hintText: 'Search nearest mosque',
+                      hintStyle: const TextStyle(
                         color: Colors.white,
                         fontFamily: 'Gilroy',
                       ),
@@ -71,16 +84,16 @@ class _CommunityState extends State<Community> {
                   ),
                 ),
                 Container(
-                    margin: EdgeInsets.only(top: 20, left: 20),
-                    child: Text(
-                      'Find Masjids',
+                    margin: const EdgeInsets.only(top: 20, left: 20),
+                    child: const Text(
+                      'Find Mosque',
                       style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Gilroy',
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                     )),
-                Container(
+                SizedBox(
                   height: MediaQuery.of(context).size.height * 0.8,
                   child: FutureBuilder(
                       future: search == null
@@ -105,7 +118,7 @@ class _CommunityState extends State<Community> {
                           itemCount: snapshot.data!.docs.length,
                           itemBuilder: (BuildContext context, int index) {
                             return index == null
-                                ? Text('Data is Not Laded')
+                                ? const Text('Data is Not Laded')
                                 : QariFeed(
                                     snap: snapshot.data!.docs[index].data(),
                                   );
@@ -118,12 +131,12 @@ class _CommunityState extends State<Community> {
           ),
         ),
       ),
-      floatingActionButton: new FloatingActionButton(
-        child: new Icon(Icons.add),
-        backgroundColor: new Color(0xFFE57373),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        backgroundColor: const Color(0xFFE57373),
         onPressed: () => Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => AddQariFeed(),
+            builder: (context) => const AddQariFeed(),
           ),
         ),
       ),
@@ -131,26 +144,25 @@ class _CommunityState extends State<Community> {
   }
 }
 
-
 // Row(
-            //   children: [
-            //     Padding(
-            //       padding: const EdgeInsets.all(8.0),
-            //       child: TextField(
-            //         controller: _searchController,
-            //         decoration: const InputDecoration(
-            //           hintText: 'Please Search',
-            //           border: OutlineInputBorder(),
-            //         ),
-            //       ),
-            //     ),
-            //     IconButton(
-            //         onPressed: () => setState(() {
-            //               search = _searchController.text;
-            //             }),
-            //         icon: const Icon(Icons.search))
-            //   ],
-            // ),
-            // SizedBox(
-            //   height: MediaQuery.of(context).size.height * 0.03,
-            // ),
+//   children: [
+//     Padding(
+//       padding: const EdgeInsets.all(8.0),
+//       child: TextField(
+//         controller: _searchController,
+//         decoration: const InputDecoration(
+//           hintText: 'Please Search',
+//           border: OutlineInputBorder(),
+//         ),
+//       ),
+//     ),
+//     IconButton(
+//         onPressed: () => setState(() {
+//               search = _searchController.text;
+//             }),
+//         icon: const Icon(Icons.search))
+//   ],
+// ),
+// SizedBox(
+//   height: MediaQuery.of(context).size.height * 0.03,
+// ),

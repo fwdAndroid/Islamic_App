@@ -173,7 +173,7 @@ class _VideoScreenState extends State<VideoScreen> {
                             // ),
                             contentPadding:
                                 const EdgeInsets.only(top: 20, left: 20),
-                            hintText: 'Please Search',
+                            hintText: 'Search here',
                             hintStyle: const TextStyle(
                               color: Colors.white,
                               fontFamily: 'Gilroy',

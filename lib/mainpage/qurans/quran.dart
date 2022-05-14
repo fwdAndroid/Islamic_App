@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:islamicapp/apicalls/apicall.dart';
 import 'package:islamicapp/authentications/providers/models/quran_audio_model.dart';
 import 'package:islamicapp/authentications/providers/models/quran_text_model.dart';
@@ -81,18 +82,18 @@ class _QuransState extends State<Qurans> {
                   builder: (BuildContext context,
                       AsyncSnapshot<List<Qari>> snapshot) {
                     if (snapshot.hasError) {
-                      return Center(
+                      return const Center(
                         child: Text('Qari\'s data not found '),
                       );
                     }
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(
+                      return const Center(
                         child: CircularProgressIndicator(),
                       );
                     }
                     return Container(
                       margin: const EdgeInsets.only(top: 20),
-                      height: 150,
+                      height: 100,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: snapshot.data!.length,
@@ -111,7 +112,7 @@ class _QuransState extends State<Qurans> {
                     );
                   },
                 ),
-                Container(
+                SizedBox(
                   height: MediaQuery.of(context).size.height / 1,
                   child: FutureBuilder<QuranModel>(
                       future: _quranText,
@@ -134,35 +135,58 @@ class _QuransState extends State<Qurans> {
                                     decoration: BoxDecoration(
                                         color: Colors.white,
                                         borderRadius:
-                                            BorderRadius.circular(15)),
+                                            BorderRadius.circular(20)),
                                     margin: const EdgeInsets.only(
-                                        left: 10, right: 10, top: 20),
+                                        left: 16, right: 16, top: 10),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 18, vertical: 14),
                                     width:
                                         MediaQuery.of(this.context).size.width,
                                     // height: 100,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                    child: Row(
                                       children: [
-                                        Container(
-                                            margin:
-                                                const EdgeInsets.only(top: 30),
-                                            child: Text(
+                                        Stack(
+                                          alignment: Alignment.center,
+                                          children: [
+                                            SvgPicture.asset(
+                                              "assets/star.svg",
+                                              height: 35,
+                                              width: 35,
+                                            ),
+                                            Text(
+                                              "${index + 1}",
+                                              style: const TextStyle(
+                                                  color: Colors.white),
+                                            )
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          width: 14,
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
                                               surah.englishName!,
                                               style: const TextStyle(
-                                                  fontSize: 24,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold,
                                                   color: Color(0xff555555)),
-                                            )),
-                                        Text(
-                                          surah.revelationType!
-                                                  .toString()
-                                                  .substring(15) +
-                                              ' • ' +
-                                              surah.ayahs!.length.toString() +
-                                              ' Verses',
-                                          style: const TextStyle(
-                                              color: Color(0xffAEAEAE),
-                                              fontSize: 16),
+                                            ),
+                                            Text(
+                                              surah.revelationType!
+                                                      .toString()
+                                                      .substring(15) +
+                                                  ' • ' +
+                                                  surah.ayahs!.length
+                                                      .toString() +
+                                                  ' Verses',
+                                              style: const TextStyle(
+                                                  color: Color(0xffAEAEAE),
+                                                  fontSize: 14),
+                                            ),
+                                          ],
                                         ),
                                       ],
                                     ),
@@ -183,7 +207,6 @@ class _QuransState extends State<Qurans> {
     );
   }
 }
-
 
 // if (snapshot.hasData) {
 //                       return Container(

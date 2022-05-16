@@ -90,13 +90,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.all(8.0),
                 child: Image.asset(
                   'assets/grid.png',
-                  height: 14,
-                  width: 14,
+                  height: 13,
+                  width: 13,
                 ),
               ),
             )),
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Next prayer time',
           style: TextStyle(
             color: Colors.white,
@@ -111,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   context, MaterialPageRoute(builder: (builder) => Settings()));
             },
             child: Container(
-                margin: EdgeInsets.only(right: 5, top: 8),
+                margin: const EdgeInsets.only(right: 5, top: 8),
                 height: 48,
                 width: 48,
                 decoration: BoxDecoration(
@@ -231,10 +231,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           // ),
                         );
                       } else {
-                        return Container(
-                          child: Center(
-                            child: CircularProgressIndicator(),
-                          ),
+                        return const Center(
+                          child: CircularProgressIndicator(),
                         );
                       }
                     },

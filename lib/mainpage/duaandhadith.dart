@@ -74,14 +74,14 @@ class _DuaAndHadithState extends State<DuaAndHadith> {
                         borderRadius: BorderRadius.circular(20)),
                     margin: const EdgeInsets.only(left: 10, right: 10, top: 20),
                     width: MediaQuery.of(context).size.width,
-                    height: 130,
+                    height: 100,
                     child: Column(
                       children: [
                         Row(
                           children: [
                             Container(
-                                height: 110,
-                                width: 110,
+                                height: 80,
+                                width: 80,
                                 decoration: BoxDecoration(
                                     color: const Color(0xff3F48CC),
                                     borderRadius: BorderRadius.circular(20)),
@@ -90,7 +90,7 @@ class _DuaAndHadithState extends State<DuaAndHadith> {
                                   padding: const EdgeInsets.all(20.0),
                                   child: SvgPicture.asset(
                                     'assets/ram.svg',
-                                    width: 130,
+                                    width: 100,
                                   ),
                                 )),
                             Column(
@@ -101,7 +101,7 @@ class _DuaAndHadithState extends State<DuaAndHadith> {
                                   'Dua',
                                   style: TextStyle(
                                       // color: Color(0xff555555),
-                                      fontSize: 24,
+                                      fontSize: 22,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(height: 8,),
@@ -130,14 +130,14 @@ class _DuaAndHadithState extends State<DuaAndHadith> {
                         borderRadius: BorderRadius.circular(20)),
                     margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
                     width: MediaQuery.of(context).size.width,
-                    height: 130,
+                    height: 100,
                     child: Column(
                       children: [
                         Row(
                           children: [
                             Container(
-                                height: 110,
-                                width: 110,
+                                height: 80,
+                                width: 80,
                                 decoration: BoxDecoration(
                                     color: const Color(0xff3F48CC),
                                     borderRadius: BorderRadius.circular(20)),
@@ -146,7 +146,7 @@ class _DuaAndHadithState extends State<DuaAndHadith> {
                                   padding: const EdgeInsets.all(20.0),
                                   child: SvgPicture.asset(
                                     'assets/qurans.svg',
-                                    width: 130,
+                                    width: 100,
                                   ),
                                 )),
                             Column(
@@ -157,7 +157,7 @@ class _DuaAndHadithState extends State<DuaAndHadith> {
                                   'Hadiths',
                                   style: TextStyle(
                                     // color: Color(0xff555555),
-                                      fontSize: 24,
+                                      fontSize: 22,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(height: 8,),

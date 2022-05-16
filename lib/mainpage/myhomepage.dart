@@ -231,10 +231,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           // ),
                         );
                       } else {
-                        return Container(
-                          child: Center(
-                            child: CircularProgressIndicator(),
-                          ),
+                        return const Center(
+                          child: CircularProgressIndicator(),
                         );
                       }
                     },

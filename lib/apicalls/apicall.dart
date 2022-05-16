@@ -140,14 +140,16 @@ class ApiCalls {
     // var url = Uri.parse("https://api.aladhan.com/v1/timingsByAddress?address=$address");
 
     final response = await http.get(Uri.parse(
+        // "http://api.aladhan.com/v1/timings/1398332113?latitude=51.508515&longitude=-0.1254872"));
         "https://api.aladhan.com/v1/timingsByAddress?address=$address"));
-    // print(response.body);
+    // print("response from api: ${response.body}");
 
     return PrayerTimeModel.fromJson(jsonDecode(response.body));
   }
 
   Stream<PrayerTimeModel> gettime(Duration refreshTime) async* {
     var address = await LocationMethods().checkLocationStatus();
+    print("found addres: $address");
     while (true) {
       // await Future.delayed(refreshTime);
       yield await gettiming(address!);
